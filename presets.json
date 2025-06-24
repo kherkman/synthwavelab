@@ -1,0 +1,1790 @@
+[
+  {
+    "name": "Basic Square Wave",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 16,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16"
+        ],
+        "amplitudes": [
+          "0.6",
+          "0",
+          "0.2",
+          "0",
+          "0.12",
+          "0",
+          "0.086",
+          "0",
+          "0.067",
+          "0",
+          "0.055",
+          "0",
+          "0.046",
+          "0",
+          "0.04",
+          "0"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "Basic Triangle Wave",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 16,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16"
+        ],
+        "amplitudes": [
+          "0.8",
+          "0",
+          "0.089",
+          "0",
+          "0.032",
+          "0",
+          "0.016",
+          "0",
+          "0.01",
+          "0",
+          "0.006",
+          "0",
+          "0.005",
+          "0",
+          "0.004",
+          "0"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "180",
+          "0",
+          "0",
+          "0",
+          "180",
+          "0",
+          "0",
+          "0",
+          "180",
+          "0",
+          "0",
+          "0",
+          "180",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "Basic Sawtooth Wave",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 16,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16"
+        ],
+        "amplitudes": [
+          "0.5",
+          "0.25",
+          "0.167",
+          "0.125",
+          "0.1",
+          "0.083",
+          "0.071",
+          "0.063",
+          "0.056",
+          "0.05",
+          "0.045",
+          "0.042",
+          "0.038",
+          "0.036",
+          "0.033",
+          "0.031"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "Basic Rev Saw Wave",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 16,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16"
+        ],
+        "amplitudes": [
+          "0.5",
+          "0.25",
+          "0.167",
+          "0.125",
+          "0.1",
+          "0.083",
+          "0.071",
+          "0.063",
+          "0.056",
+          "0.05",
+          "0.045",
+          "0.042",
+          "0.038",
+          "0.036",
+          "0.033",
+          "0.031"
+        ],
+        "phases": [
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "Basic Abs Sine",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "2",
+          "4",
+          "6",
+          "8",
+          "10",
+          "12",
+          "14",
+          "16"
+        ],
+        "amplitudes": [
+          "0.5",
+          "0.1",
+          "0.042",
+          "0.023",
+          "0.015",
+          "0.01",
+          "0.008",
+          "0.006"
+        ],
+        "phases": [
+          "90",
+          "90",
+          "90",
+          "90",
+          "90",
+          "90",
+          "90",
+          "90"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "Basic Half Sine",
+    "settings": {
+      "version": "18.0.0",
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "amplitudes": [
+          "0.5",
+          "0.21",
+          "0",
+          "0.042",
+          "0",
+          "0.018",
+          "0",
+          "0.01"
+        ],
+        "phases": [
+          "0",
+          "90",
+          "0",
+          "90",
+          "0",
+          "90",
+          "0",
+          "90"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.05",
+        "velocitySens": "0.5"
+      },
+      "effects": {}
+    }
+  },
+  {
+    "name": "80s Poly Pad",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.35",
+      "octaveShift": 0,
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.35",
+          "0.23",
+          "0.17",
+          "0.14",
+          "0.12",
+          "0.1",
+          "0.08"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.25",
+        "decay": "1.5",
+        "sustain": "0.7",
+        "release": "0.8",
+        "velocitySens": "0.4"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "lowGain": "-4",
+          "lowFreq": "350",
+          "midGain": "2",
+          "midFreq": "1500",
+          "midQ": "1.5",
+          "highGain": "6",
+          "highFreq": "5500"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.48",
+          "feedback": "0.55",
+          "mix": "0.4",
+          "pan": "-0.5"
+        },
+        "delay2": {
+          "active": true,
+          "time": "0.96",
+          "feedback": "0.4",
+          "mix": "0.3",
+          "pan": "0.5"
+        },
+        "chorus": {
+          "active": true,
+          "rate": "0.8",
+          "depth": "4",
+          "delay": "25",
+          "mix": "0.7"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Mellow E-Piano",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.9",
+      "masterVolume": "0.4",
+      "octaveShift": 0,
+      "numHarmonics": 4,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "5.4",
+          "11.8",
+          "2.0"
+        ],
+        "amplitudes": [
+          "0.8",
+          "0.2",
+          "0.1",
+          "0.4"
+        ],
+        "phases": [
+          "0",
+          "20",
+          "180",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.8",
+        "sustain": "0.2",
+        "release": "0.5",
+        "velocitySens": "0.8"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "lowGain": "-6",
+          "lowFreq": "200",
+          "midGain": "4",
+          "midFreq": "2500",
+          "midQ": "1",
+          "highGain": "-2",
+          "highFreq": "7000"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.3",
+          "feedback": "0.3",
+          "mix": "0.25",
+          "pan": "0.7"
+        },
+        "chorus": {
+          "active": true,
+          "rate": "2.5",
+          "depth": "1.5",
+          "delay": "20",
+          "mix": "0.5"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "4.5",
+        "depth": "0.1",
+        "waveform": "sine",
+        "destination": "keysVolume"
+      }
+    }
+  },
+  {
+    "name": "Deep Bass",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "1.0",
+      "masterVolume": "0.5",
+      "octaveShift": -1,
+      "numHarmonics": 3,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "0.5"
+        ],
+        "amplitudes": [
+          "0.8",
+          "0.3",
+          "0.5"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.02",
+        "decay": "0.3",
+        "sustain": "0.9",
+        "release": "0.1",
+        "velocitySens": "0.2"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "lowGain": "4",
+          "lowFreq": "150",
+          "midGain": "-8",
+          "midFreq": "800",
+          "midQ": "2",
+          "highGain": "-12",
+          "highFreq": "2500"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Glistening Bell",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.7",
+      "masterVolume": "0.3",
+      "octaveShift": 1,
+      "numHarmonics": 5,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2.7",
+          "4.1",
+          "6.3",
+          "8.9"
+        ],
+        "amplitudes": [
+          "0.6",
+          "0.4",
+          "0.3",
+          "0.2",
+          "0.1"
+        ],
+        "phases": [
+          "0",
+          "90",
+          "180",
+          "270",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.005",
+        "decay": "1.2",
+        "sustain": "0.1",
+        "release": "0.8",
+        "velocitySens": "0.6"
+      },
+      "effects": {
+        "delay1": {
+          "active": true,
+          "time": "0.6",
+          "feedback": "0.65",
+          "mix": "0.5",
+          "pan": "-1"
+        },
+        "delay2": {
+          "active": true,
+          "time": "0.6",
+          "feedback": "0.65",
+          "mix": "0.5",
+          "pan": "1"
+        },
+        "chorus": {
+          "active": true,
+          "rate": "1",
+          "depth": "1",
+          "delay": "30",
+          "mix": "0.3"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Gritty Lead",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.4",
+      "octaveShift": 0,
+      "numHarmonics": 6,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.35",
+          "0.23",
+          "0.18",
+          "0.14",
+          "0.12"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.05",
+        "decay": "0.2",
+        "sustain": "1.0",
+        "release": "0.15",
+        "velocitySens": "0.3"
+      },
+      "effects": {
+        "distortion": {
+          "active": true,
+          "preset": "crunch",
+          "drive": "60",
+          "tone": "8000",
+          "mix": "0.7",
+          "gain": "0.8"
+        },
+        "eq": {
+          "active": true,
+          "lowGain": "-4",
+          "midGain": "3",
+          "highGain": "5",
+          "lowFreq": "250",
+          "midFreq": "1000",
+          "midQ": "1",
+          "highFreq": "4000"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Wobble Bass",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.7",
+      "masterVolume": "0.4",
+      "octaveShift": -1,
+      "numHarmonics": 6,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.5",
+          "0.4",
+          "0.3",
+          "0.2",
+          "0.1"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.03",
+        "decay": "0.5",
+        "sustain": "0.8",
+        "release": "0.1",
+        "velocitySens": "0.1"
+      },
+      "effects": {
+        "distortion": {
+          "active": true,
+          "preset": "saturation",
+          "drive": "40",
+          "mix": "0.5",
+          "tone": "20000",
+          "gain": "1.0"
+        },
+        "eq": {
+          "active": true,
+          "lowGain": "4",
+          "lowFreq": "250"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "8",
+        "depth": "0.8",
+        "waveform": "sawtooth",
+        "destination": "eqLowGain"
+      }
+    }
+  },
+  {
+    "name": "Crystal Pluck",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.4",
+      "octaveShift": 0,
+      "numHarmonics": 4,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "4",
+          "6.7",
+          "9.2"
+        ],
+        "amplitudes": [
+          "0.8",
+          "0.4",
+          "0.2",
+          "0.1"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.001",
+        "decay": "0.3",
+        "sustain": "0.0",
+        "release": "0.2",
+        "velocitySens": "0.7"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "lowGain": "-10",
+          "lowFreq": "500",
+          "midGain": "3",
+          "midFreq": "1500",
+          "midQ": "1.5",
+          "highGain": "5",
+          "highFreq": "6000"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.33",
+          "feedback": "0.4",
+          "mix": "0.4",
+          "pan": "-0.4"
+        },
+        "delay2": {
+          "active": true,
+          "time": "0.66",
+          "feedback": "0.3",
+          "mix": "0.3",
+          "pan": "0.4"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Lush Ambience",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.7",
+      "masterVolume": "0.3",
+      "octaveShift": 0,
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "1.01",
+          "2",
+          "2.01",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.5",
+          "0.4",
+          "0.3",
+          "0.2",
+          "0.1",
+          "0.05",
+          "0.02"
+        ],
+        "phases": [
+          "0",
+          "90",
+          "0",
+          "90",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "1.2",
+        "decay": "2.0",
+        "sustain": "0.9",
+        "release": "3.5",
+        "velocitySens": "0.2"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "highGain": "4",
+          "highFreq": "8000"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.75",
+          "feedback": "0.6",
+          "mix": "0.45",
+          "pan": "-0.6"
+        },
+        "delay2": {
+          "active": true,
+          "time": "1",
+          "feedback": "0.5",
+          "mix": "0.35",
+          "pan": "0.6"
+        },
+        "chorus": {
+          "active": true,
+          "rate": "0.5",
+          "depth": "5",
+          "delay": "30",
+          "mix": "0.8"
+        },
+        "phaser": {
+          "active": true,
+          "rate": "0.1",
+          "depth": "500",
+          "baseFreq": "1200",
+          "feedback": "0.6",
+          "mix": "0.5"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "0.05",
+        "depth": "0.5",
+        "waveform": "sine",
+        "destination": "phaserRate"
+      }
+    }
+  },
+  {
+    "name": "Classic Trance Gate",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.35",
+      "octaveShift": 0,
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.35",
+          "0.23",
+          "0.18",
+          "0.14",
+          "0.12",
+          "0.1",
+          "0.09"
+        ],
+        "phases": [
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180",
+          "0",
+          "180"
+        ]
+      },
+      "adsr": {
+        "attack": "0.08",
+        "decay": "0.4",
+        "sustain": "0.8",
+        "release": "0.3",
+        "velocitySens": "0.0"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "hpfCutoff": "200",
+          "lpfCutoff": "12000"
+        },
+        "tremolo": {
+          "active": true,
+          "depth": "1",
+          "gateLength": "0.5",
+          "gatePattern": [
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false
+          ]
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.375",
+          "feedback": "0.5",
+          "mix": "0.4"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "sequencer": {
+        "bpm": "135"
+      }
+    }
+  },
+  {
+    "name": "Robotic Bell",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.7",
+      "masterVolume": "0.4",
+      "octaveShift": 1,
+      "numHarmonics": 2,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "3.14"
+        ],
+        "amplitudes": [
+          "0.8",
+          "0.5"
+        ],
+        "phases": [
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.001",
+        "decay": "0.9",
+        "sustain": "0.0",
+        "release": "0.5",
+        "velocitySens": "0.9"
+      },
+      "effects": {
+        "ringMod": {
+          "active": true,
+          "freq": "444",
+          "mix": "0.6"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.5",
+          "feedback": "0.4",
+          "mix": "0.5"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "0.2",
+        "depth": "0.3",
+        "destination": "ringModFreq",
+        "waveform": "sine"
+      }
+    }
+  },
+  {
+    "name": "Filtered Saw Bass",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.9",
+      "masterVolume": "0.4",
+      "octaveShift": -1,
+      "numHarmonics": 10,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.35",
+          "0.23",
+          "0.18",
+          "0.14",
+          "0.12",
+          "0.1",
+          "0.09",
+          "0.08",
+          "0.07"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.2",
+        "sustain": "1.0",
+        "release": "0.1",
+        "velocitySens": "0.2"
+      },
+      "effects": {
+        "distortion": {
+          "active": true,
+          "preset": "overdrive",
+          "drive": "30",
+          "mix": "0.4",
+          "tone": "20000",
+          "gain": "1.0"
+        },
+        "eq": {
+          "active": true,
+          "hpfCutoff": "40",
+          "lpfCutoff": "800",
+          "highGain": "-10"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Gated Noise Pad",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.6",
+      "masterVolume": "0.3",
+      "octaveShift": 0,
+      "numHarmonics": 16,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2.1",
+          "3.2",
+          "4.3",
+          "5.4",
+          "6.5",
+          "7.6",
+          "8.7",
+          "9.8",
+          "10.9",
+          "11.1",
+          "12.2",
+          "13.3",
+          "14.4",
+          "15.5",
+          "16.6"
+        ],
+        "amplitudes": [
+          "0.4",
+          "0.3",
+          "0.25",
+          "0.2",
+          "0.18",
+          "0.15",
+          "0.12",
+          "0.1",
+          "0.08",
+          "0.07",
+          "0.06",
+          "0.05",
+          "0.04",
+          "0.03",
+          "0.02",
+          "0.01"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.5",
+        "decay": "1.0",
+        "sustain": "1.0",
+        "release": "0.8",
+        "velocitySens": "0.0"
+      },
+      "effects": {
+        "tremolo": {
+          "active": true,
+          "depth": "0.9",
+          "gateLength": "0.95",
+          "gatePattern": [
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            false
+          ]
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.75",
+          "feedback": "0.6",
+          "mix": "0.5"
+        },
+        "phaser": {
+          "active": true,
+          "rate": "0.1",
+          "mix": "0.7",
+          "depth": "700",
+          "baseFreq": "800",
+          "feedback": "0.5"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "sequencer": {
+        "bpm": "100"
+      }
+    }
+  },
+  {
+    "name": "Alien Signal",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.4",
+      "octaveShift": 0,
+      "numHarmonics": 1,
+      "additive": {
+        "amplitudes": [
+          "0.8"
+        ],
+        "freqMultipliers": [
+          "1"
+        ],
+        "phases": [
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.05",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.1",
+        "velocitySens": "0.5"
+      },
+      "effects": {
+        "ringMod": {
+          "active": true,
+          "freq": "800",
+          "mix": "1.0"
+        },
+        "eq": {
+          "active": true,
+          "lpfCutoff": "4000",
+          "hpfCutoff": "300"
+        },
+        "fxGate": {
+          "active": false
+        }
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "0.5",
+        "depth": "1",
+        "destination": "ringModFreq",
+        "waveform": "sawtooth"
+      }
+    }
+  },
+  {
+    "name": "Grimy Delay",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.4",
+      "numHarmonics": 8,
+      "additive": {
+        "amplitudes": [
+          "0.7",
+          "0.3",
+          "0.2",
+          "0.15",
+          "0.1",
+          "0.08",
+          "0.06",
+          "0.05"
+        ],
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.4",
+        "sustain": "0.1",
+        "release": "0.2",
+        "velocitySens": "0.6"
+      },
+      "effects": {
+        "distortion": {
+          "active": true,
+          "preset": "saturation",
+          "drive": "45",
+          "tone": "5000",
+          "mix": "0.6",
+          "gain": "1.0"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.4",
+          "feedback": "0.75",
+          "mix": "0.5",
+          "pan": "0.3"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Slow Fade-In Pad",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.7",
+      "masterVolume": "0.35",
+      "octaveShift": -1,
+      "numHarmonics": 12,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "1.01",
+          "2",
+          "2.02",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "amplitudes": [
+          "0.6",
+          "0.55",
+          "0.3",
+          "0.28",
+          "0.2",
+          "0.15",
+          "0.1",
+          "0.08",
+          "0.06",
+          "0.05",
+          "0.04",
+          "0.03"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.01",
+        "decay": "0.1",
+        "sustain": "1.0",
+        "release": "0.1",
+        "velocitySens": "0.5"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "lpfCutoff": "2500",
+          "hpfCutoff": "100"
+        },
+        "chorus": {
+          "active": true,
+          "mix": "0.6",
+          "rate": "0.4",
+          "depth": "6",
+          "delay": "20"
+        },
+        "distortion": {
+          "active": true,
+          "preset": "saturation",
+          "drive": "15",
+          "mix": "0.2",
+          "gain": "1.2"
+        },
+        "fader": {
+          "active": true,
+          "shape": "fadeIn",
+          "time": "3.5",
+          "minVolume": "0"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "S&H Noise LFO",
+    "settings": {
+      "version": "18.0.0",
+      "keysVolume": "0.8",
+      "masterVolume": "0.4",
+      "octaveShift": 0,
+      "numHarmonics": 4,
+      "additive": {
+        "amplitudes": [
+          "0.8",
+          "0.4",
+          "0.2",
+          "0.1"
+        ],
+        "freqMultipliers": [
+          "1",
+          "1.5",
+          "2",
+          "3"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.1",
+        "decay": "0.5",
+        "sustain": "0.8",
+        "release": "0.3",
+        "velocitySens": "0.3"
+      },
+      "lfo1": {
+        "active": true,
+        "rate": "8",
+        "depth": "0.7",
+        "waveform": "noise",
+        "destination": "eqMidGain"
+      },
+      "lfo2": {
+        "active": true,
+        "rate": "0.15",
+        "depth": "0.4",
+        "waveform": "sine",
+        "destination": "phaserRate"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "hpfCutoff": "100",
+          "midQ": "5"
+        },
+        "phaser": {
+          "active": true,
+          "mix": "0.6"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "Pluck ADSR Demo",
+    "settings": {
+      "version": "18.0.0",
+      "masterVolume": "0.4",
+      "keysVolume": "0.9",
+      "octaveShift": 0,
+      "numHarmonics": 5,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "1.9",
+          "3.05",
+          "4",
+          "5.1"
+        ],
+        "amplitudes": [
+          "0.6",
+          "0.3",
+          "0.2",
+          "0.15",
+          "0.1"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "adsr": {
+        "attack": "0.001",
+        "decay": "0.25",
+        "sustain": "0",
+        "release": "0.1",
+        "velocitySens": "0.7"
+      },
+      "effects": {
+        "delay1": {
+          "active": true,
+          "time": "0.3",
+          "feedback": "0.5",
+          "mix": "0.4",
+          "pan": "-0.4"
+        },
+        "delay2": {
+          "active": true,
+          "time": "0.6",
+          "feedback": "0.4",
+          "mix": "0.3",
+          "pan": "0.4"
+        },
+        "chorus": {
+          "active": true,
+          "mix": "0.3"
+        },
+        "fxGate": {
+          "active": false
+        }
+      }
+    }
+  },
+  {
+    "name": "FX Gate Lead",
+    "settings": {
+      "version": "18.0.0",
+      "masterVolume": "0.4",
+      "keysVolume": "0.8",
+      "octaveShift": 0,
+      "numHarmonics": 8,
+      "additive": {
+        "freqMultipliers": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "amplitudes": [
+          "0.7",
+          "0.3",
+          "0.2",
+          "0.15",
+          "0.1",
+          "0.08",
+          "0.06",
+          "0.05"
+        ],
+        "phases": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      "sequencer": {
+        "bpm": "140",
+        "length": 16,
+        "pattern": [
+          {
+            "baseNoteName": "C3",
+            "baseFreq": 130.81,
+            "octaveShift": 1,
+            "noteLabel": "C"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "D#3",
+            "baseFreq": 155.56,
+            "octaveShift": 1,
+            "noteLabel": "D♯"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "G3",
+            "baseFreq": 196,
+            "octaveShift": 1,
+            "noteLabel": "G"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "C3",
+            "baseFreq": 130.81,
+            "octaveShift": 1,
+            "noteLabel": "C"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "C3",
+            "baseFreq": 130.81,
+            "octaveShift": 2,
+            "noteLabel": "C"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "G3",
+            "baseFreq": 196,
+            "octaveShift": 1,
+            "noteLabel": "G"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "A#3",
+            "baseFreq": 233.08,
+            "octaveShift": 1,
+            "noteLabel": "A♯"
+          },
+          {
+            "baseNoteName": null
+          },
+          {
+            "baseNoteName": "G3",
+            "baseFreq": 196,
+            "octaveShift": 1,
+            "noteLabel": "G"
+          },
+          {
+            "baseNoteName": null
+          }
+        ]
+      },
+      "adsr": {
+        "attack": "0.05",
+        "decay": "0.4",
+        "sustain": "0.9",
+        "release": "0.2",
+        "velocitySens": "0.0"
+      },
+      "effects": {
+        "eq": {
+          "active": true,
+          "hpfCutoff": "200"
+        },
+        "delay1": {
+          "active": true,
+          "time": "0.214",
+          "feedback": "0.65",
+          "mix": "0.8",
+          "pan": "0"
+        },
+        "distortion": {
+          "active": true,
+          "mix": "0.5"
+        },
+        "fxGate": {
+          "active": false,
+          "destination": "distortionMix",
+          "depth": "1.0",
+          "gateLength": "0.5",
+          "gatePattern": [
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            false
+          ]
+        }
+      }
+    }
+  }
+]
