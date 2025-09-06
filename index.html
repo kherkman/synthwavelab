@@ -1739,7 +1739,7 @@
             ui.moduleLoadStatus.textContent = "Please select a module to load.";
             return;
         }
-        const path = `Modules/${filename}`;
+        const path = `modules/${filename}`;
         ui.moduleLoadStatus.textContent = `Loading ${filename}...`;
 
         fetch(path)
