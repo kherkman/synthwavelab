@@ -1,7 +1,7 @@
 /**
  * drums_sequencer.js
  * Sisältää kaiken logiikan rummuille, sekvensserille ja gate-efekteille.
- * Toimii ilman moduuleja (ES6 import/export) jotta file:// protokolla toimii.
+ * Sisältää nyt automaattisen samplen latauksen juurikansiosta käynnistyksen yhteydessä.
  */
 
 class DrumsAndSequencer {
@@ -10,15 +10,7 @@ class DrumsAndSequencer {
         this.audioContext = audioContext;
         this.ui = ui;
         
-        // Callbacks sisältää pääohjelman funktiot ja objektit:
-        // { 
-        //   playNote: fn, 
-        //   stopNote: fn, 
-        //   getOctaveShift: fn (getter), 
-        //   mixerNodes: { kick, snare, hat, sequencer },
-        //   effects: { tremolo, fxGate },
-        //   getAvailablePianoNotes: fn (getter)
-        // }
+        // Callbacks sisältää pääohjelman funktiot ja objektit
         this.callbacks = callbacks;
 
         // --- Tilamuuttujat ---
@@ -56,6 +48,9 @@ class DrumsAndSequencer {
 
         // Aseta BPM UI:n perusteella
         this.bpm = parseInt(this.ui.bpmSlider.value);
+
+        // Yritä ladata oletussamplet juuresta automaattisesti
+        this.loadSamplesFromRoot();
     }
 
     initEventListeners() {
@@ -67,7 +62,7 @@ class DrumsAndSequencer {
         this.ui.clearAllSeqBtn.addEventListener('click', () => this.clearAllSteps());
         this.ui.randomizeSequencerBtn.addEventListener('click', () => this.randomizeSequencer());
 
-        // Sample Loaders
+        // Sample Loaders (Manuaalinen lataus)
         this.ui.loadKickSample.addEventListener('change', (e) => this.loadSample(e.target.files[0], 'kick', this.ui.kickSampleName));
         this.ui.loadSnareSample.addEventListener('change', (e) => this.loadSample(e.target.files[0], 'snare', this.ui.snareSampleName));
         this.ui.loadHatSample.addEventListener('change', (e) => this.loadSample(e.target.files[0], 'hat', this.ui.hatSampleName));
@@ -77,13 +72,44 @@ class DrumsAndSequencer {
         this.ui.clearSnareSampleBtn.addEventListener('click', () => { this.snareSampleBuffer = null; this.resetSampleUI(this.ui.snareSampleName, this.ui.loadSnareSample); });
         this.ui.clearHatSampleBtn.addEventListener('click', () => { this.hatSampleBuffer = null; this.resetSampleUI(this.ui.hatSampleName, this.ui.loadHatSample); });
 
-        // Volume Sliders (direct audio param control)
+        // Volume Sliders
         this.ui.kickVolume.addEventListener('input', (e) => this.callbacks.mixerNodes.kick.gain.setTargetAtTime(parseFloat(e.target.value), this.audioContext.currentTime, 0.01));
         this.ui.snareVolume.addEventListener('input', (e) => this.callbacks.mixerNodes.snare.gain.setTargetAtTime(parseFloat(e.target.value), this.audioContext.currentTime, 0.01));
         this.ui.hatVolume.addEventListener('input', (e) => this.callbacks.mixerNodes.hat.gain.setTargetAtTime(parseFloat(e.target.value), this.audioContext.currentTime, 0.01));
         this.ui.sequencerVolume.addEventListener('input', (e) => this.callbacks.mixerNodes.sequencer.gain.setTargetAtTime(parseFloat(e.target.value), this.audioContext.currentTime, 0.01));
-    
-        // Gate UI Listeners (Gate length sliders handled in main loop read)
+    }
+
+    /**
+     * Yrittää ladata kick.wav, snare.wav ja hi-hat.wav tiedostot automaattisesti juuresta.
+     */
+    async loadSamplesFromRoot() {
+        const samplesToLoad = [
+            { url: 'kick.wav', type: 'kick', ui: this.ui.kickSampleName },
+            { url: 'snare.wav', type: 'snare', ui: this.ui.snareSampleName },
+            { url: 'hi-hat.wav', type: 'hat', ui: this.ui.hatSampleName }
+        ];
+
+        for (const sample of samplesToLoad) {
+            try {
+                const response = await fetch(sample.url);
+                if (response.ok) {
+                    const arrayBuffer = await response.arrayBuffer();
+                    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                    
+                    if (sample.type === 'kick') this.kickSampleBuffer = audioBuffer;
+                    else if (sample.type === 'snare') this.snareSampleBuffer = audioBuffer;
+                    else if (sample.type === 'hat') this.hatSampleBuffer = audioBuffer;
+
+                    sample.ui.textContent = sample.url;
+                    sample.ui.style.color = 'var(--color-neon-green)';
+                    console.log(`Auto-loaded default sample: ${sample.url}`);
+                } else {
+                    console.log(`Default sample ${sample.url} not found in root. Using synthesis.`);
+                }
+            } catch (err) {
+                console.warn(`Could not auto-load ${sample.url}:`, err);
+            }
+        }
     }
 
     // --- Äänen tuotto (Drum Synthesis & Samples) ---
@@ -330,7 +356,6 @@ class DrumsAndSequencer {
         
         for (const interval of intervals) {
             let targetPoolIndex = rootNotePoolIndex + interval;
-            // Wrap logic (simplified from original for brevity, but functionally similar)
             if (targetPoolIndex >= availablePianoNotes.length) targetPoolIndex %= availablePianoNotes.length;
             if (availablePianoNotes[targetPoolIndex]) {
                 chordNotesForArp.push({ ...availablePianoNotes[targetPoolIndex], octaveShift: rootOctaveForChord });
@@ -403,7 +428,6 @@ class DrumsAndSequencer {
         clearTimeout(this.seqTimerId);
         this.seqTimerId = null;
         
-        // Reset FX Gates / Tremolo Gains if stopped
         const effects = this.callbacks.effects;
         
         if (effects.tremolo.active) {
@@ -411,19 +435,9 @@ class DrumsAndSequencer {
             effects.tremolo.nodes.tremoloGain.gain.setTargetAtTime(1.0, this.audioContext.currentTime, 0.01);
         }
         
-        // Reset FX mixes if automated
-        // (Note: In a fuller implementation, we might track which parameters were modulated. 
-        // For simplicity, we rely on the main app to reset params when modules are toggled or just let them settle.)
-
         this.ui.playStopSequencer.textContent = 'Play Sequencer';
         this.ui.playStopSequencer.classList.remove('active');
         this.seqStepElements.forEach(el => el.classList.remove('playing'));
-        
-        // Stop currently playing sequencer notes
-        // We need a way to stop specific notes. The main app tracks "Note_seq" ids.
-        // We'll trust the main app's stop logic or we can trigger a global 'stop all seq notes' if implemented.
-        // For now, note releases are handled by setTimeout in the loop, but we can do a cleanup:
-        // (Accessing private map from main app isn't possible directly, but stopNote handles it if we knew the IDs)
     }
 
     sequencerStep() {
@@ -434,7 +448,7 @@ class DrumsAndSequencer {
         const timePer16thNote = (60.0 / this.bpm) / 4.0;
         const effects = this.callbacks.effects;
 
-        // --- Gate Logic (runs every 16th note) ---
+        // --- Gate Logic ---
         if (effects.tremolo.active) {
             const gain = effects.tremolo.nodes.tremoloGain.gain;
             const depthTarget = 1.0 - parseFloat(this.ui.tremoloDepth.value);
@@ -453,7 +467,7 @@ class DrumsAndSequencer {
 
         if (effects.fxGate.active) {
             const destination = this.ui.fxGateDestination.value;
-            const target = effects.fxGate.getTarget(destination); // Main app provides this helper in effects object
+            const target = effects.fxGate.getTarget(destination);
             if (target && target.param) {
                 const gain = target.param;
                 const baseValue = target.baseValue;
@@ -485,55 +499,7 @@ class DrumsAndSequencer {
             if (stepData) {
                 if (stepData.baseNoteName && stepData.baseFreq != null) {
                     const stepVolume = stepData.volume;
-                    // Note: We cannot modify the global octaveShift in main app directly via a variable.
-                    // But playNote usually calculates freq based on global shift. 
-                    // The original code hacked global octaveShift temporarily. 
-                    // We must ask the main app to handle the "sequencer override octave" 
-                    // or calculate the specific freq here.
-                    
-                    // The simplest way to replicate original behavior without direct var access:
-                    // We calculate the *target* octave and pass the difference to playNote if it supports it,
-                    // OR we assume playNote uses a global we can't touch, so we pre-calculate the frequency.
-                    // Original: octaveShift = stepData.octaveShift; playNote(...); octaveShift = original;
-                    
-                    // Let's rely on the callback `playNote` to handle specific frequency.
-                    // But `playNote` in main app applies global octave shift to the midi calculation.
-                    // This is tricky. Ideally `playNote` should accept an override octave.
-                    // Assuming we updated `playNote` in main or we simulate the freq math here:
-                    
-                    // Workaround: We know the baseFreq (C3=130.81). 
-                    // Note Frequency = baseFreq * 2^stepOctave.
-                    // NOTE: The main app adds global octave shift ON TOP of what we send usually.
-                    // To strictly follow original logic (step defines absolute octave relative to key),
-                    // we might need to "undo" global shift in freq calculation if we pass raw freq,
-                    // or just pass the parameters and let main app decide.
-                    
-                    // To keep it simple and working: We pass the *Frequency* directly to `playNote`.
-                    // The main app's `playNote` logic: `actualFundamentalFreq = fundamentalFreq * Math.pow(2, noteOctaveShift);`
-                    // where noteOctaveShift is the global variable.
-                    // This means we have a dependency problem if we want Step Octave to override Global Octave.
-                    
-                    // SOLUTION: The main app integration should allow `playNote` to take an options object or similar,
-                    // OR we temporarily accept that Sequencer Octave adds to Global Octave.
-                    // OR, better: We implement the math here and `playNote` takes the final frequency.
-                    
-                    // Implementation assuming standard PlayNote(note, freq...):
-                    // We will set a temporary property on the callback object if possible, or just pass context.
-                    // Actually, the best way for a "no server" refactor without rewriting main entirely is:
-                    // The `callbacks.playNote` should handle the Sequencer Trigger flag.
-                    
-                    // Let's act as if we are the main loop:
                     const uniqueId = `${stepData.baseNoteName}_seq`;
-                    
-                    // Trigger note via callback. 
-                    // We pass a special "overrideOctave" if we can, or we rely on the fact that
-                    // in the original code, it modified the global variable.
-                    // Since we can't modify the global variable in `index.html` from here easily (unless it's on window),
-                    // we will modify `this.callbacks.setGlobalOctave` if it existed.
-                    
-                    // HACK for compatibility: Access window object if necessary or assume `playNote` is smart.
-                    // Let's assume `playNote` takes (noteId, freq, vel, keyEl, isSeq, stepVol, octaveOverride).
-                    // If not, we trigger it normally.
                     
                     this.callbacks.playNote(
                         stepData.baseNoteName, 
@@ -542,7 +508,7 @@ class DrumsAndSequencer {
                         null, 
                         true, 
                         stepVolume, 
-                        stepData.octaveShift // Passing this as a new argument to be handled
+                        stepData.octaveShift 
                     );
 
                     const noteDurationSeconds = (timePer16thNote * ticksPerMainStep) * 0.98;
@@ -581,17 +547,15 @@ class DrumsAndSequencer {
     }
     
     updateGateUI(container, patternArray) {
-        // Called when loading presets
         const steps = container.children;
         for (let i = 0; i < steps.length; i++) {
             steps[i].classList.toggle('active', patternArray[i]);
         }
     }
 
-    // --- Data Export/Import Helpers for Main App ---
+    // --- Data Export/Import Helpers ---
 
     getData() {
-        // Helper to gather settings for saving
         return {
             bpm: this.bpm,
             volume: this.ui.sequencerVolume.value,
@@ -608,7 +572,6 @@ class DrumsAndSequencer {
     applyData(data) {
         if (!data) return;
         
-        // Samples
         if (data.kickSample) this.kickSampleBuffer = this.dataToBuffer(data.kickSample);
         if (data.snareSample) this.snareSampleBuffer = this.dataToBuffer(data.snareSample);
         if (data.hatSample) this.hatSampleBuffer = this.dataToBuffer(data.hatSample);
@@ -617,7 +580,6 @@ class DrumsAndSequencer {
         this.ui.snareSampleName.textContent = this.snareSampleBuffer ? "Loaded Sample" : "Default";
         this.ui.hatSampleName.textContent = this.hatSampleBuffer ? "Loaded Sample" : "Default";
 
-        // Sequencer
         this.ui.bpmSlider.value = data.bpm || 120; 
         this.bpm = data.bpm || 120;
         this.ui.sequencerVolume.value = data.volume || 0.7;
@@ -633,7 +595,6 @@ class DrumsAndSequencer {
             this.initializeSequencerUI();
         }
 
-        // Gates
         if (data.tremoloGate) {
             this.tremoloGatePattern = [...data.tremoloGate];
             this.updateGateUI(this.ui.tremoloGateStepsContainer, this.tremoloGatePattern);
@@ -644,7 +605,6 @@ class DrumsAndSequencer {
         }
     }
 
-    // AudioBuffer helpers
     bufferToData(buffer) {
         if (!buffer) return null;
         const channels = [];
