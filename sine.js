@@ -45,25 +45,62 @@ const SineEngine = (() => {
         noteData.gainNode.connect(targetNode);
 
         if (isSampleLoaded) {
-            // SAMPLERI-TILA (sine.wav)
-            const source = audioContext.createBufferSource();
-            source.buffer = audioBuffer;
+            // --- SAMPLERI-TILA (Sample-pohjainen additiivinen synteesi) ---
+            // Käydään läpi kaikki harmoniset aallot kuten syntetisaattorissakin,
+            // mutta oskillaattorin sijaan käytetään sine.wav-samplea.
             
-            // Lasketaan toistonopeus suhteessa C4-nuottiin
-            // playbackRate = tavoitetaajuus / perustaajuus
-            source.playbackRate.value = freq / BASE_FREQ;
+            for (let i = 0; i < globals.numHarmonics; i++) {
+                // Lasketaan tämän kerroksen taajuus FreqMul-arvon perusteella
+                const harmonicFreq = freq * globals.freqMultipliers[i];
+                
+                // Nyquist-tarkistus (ettei ylitetä puolta näytteenottotaajuudesta)
+                if (harmonicFreq <= 0 || harmonicFreq > audioContext.sampleRate / 2) continue;
 
-            // Loop-asetukset: 0.3s - 0.93s
-            source.loop = true;
-            source.loopStart = 0.3;
-            source.loopEnd = 0.93;
+                // Luodaan tarvittavat noodit tälle kerrokselle
+                const source = audioContext.createBufferSource();
+                const phaseDelay = audioContext.createDelay(0.1); // Max 0.1s viive riittää vaiheenkääntöön
+                const harmonicGain = audioContext.createGain();
 
-            source.connect(noteData.gainNode);
-            source.start(time);
-            noteData.nodes.push(source);
+                // Asetetaan puskuri
+                source.buffer = audioBuffer;
+
+                // Lasketaan toistonopeus: (Tavoitetaajuus / Perustaajuus)
+                source.playbackRate.value = harmonicFreq / BASE_FREQ;
+
+                // Asetetaan Pitch Bend (Detune)
+                source.detune.setValueAtTime(globals.pitchBendCents, time);
+
+                // Loop-asetukset (sine.wav optimoidut loop-pisteet)
+                source.loop = true;
+                source.loopStart = 0.3;
+                source.loopEnd = 0.93;
+
+                // Asetetaan amplitudi (Amp-liukusäädin)
+                harmonicGain.gain.setValueAtTime(globals.amplitudes[i], time);
+
+                // Lasketaan vaiheensiirto (Phase-liukusäädin)
+                // Viive (s) = Vaihe (rad) / (2 * PI * Taajuus)
+                const phaseRad = globals.phasesRad[i] % (2 * Math.PI);
+                let delayAmount = 0;
+                if (phaseRad > 0) {
+                    delayAmount = phaseRad / (2 * Math.PI * harmonicFreq);
+                }
+                phaseDelay.delayTime.setValueAtTime(delayAmount, time);
+
+                // Kytkennät: Source -> Delay -> HarmonicGain -> MainADSRGain
+                source.connect(phaseDelay);
+                phaseDelay.connect(harmonicGain);
+                harmonicGain.connect(noteData.gainNode);
+
+                // Käynnistys
+                source.start(time);
+                
+                // Tallennetaan lähde, jotta se voidaan pysäyttää
+                noteData.nodes.push(source);
+            }
 
         } else {
-            // SYNTETISAATTORI-TILA (Additiivinen fallback)
+            // --- SYNTETISAATTORI-TILA (Additiivinen fallback) ---
             for (let i = 0; i < globals.numHarmonics; i++) {
                 const osc = audioContext.createOscillator();
                 const phaseDelay = audioContext.createDelay(0.1);
