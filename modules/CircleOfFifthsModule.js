@@ -1,3 +1,5 @@
+--- START OF FILE CircleOfFifthsModule.js ---
+
 /**
  * Example Synth Module: A "Circle of Fifths" Interactive Chord Player.
  *
@@ -5,10 +7,8 @@
  * It displays an interactive Circle of Fifths, allowing the user to play
  * chords by clicking on keys and see the harmonic relationships between them.
  *
- * This module demonstrates:
- * - A powerful, interactive visualization of a core music theory concept.
- * - A tool for composition and learning about functional harmony.
- * - A self-contained polyphonic synthesizer for chord playback.
+ * UPDATED: This version uses the global SineEngine to generate sound,
+ * utilizing the main application's timbre and envelope settings.
  */
 class CircleOfFifthsModule {
     constructor(audioContext) {
@@ -52,30 +52,76 @@ class CircleOfFifthsModule {
     }
 
     _playVoice(noteId, freq) {
-        const now = this.audioContext.currentTime;
-        const voice = {
-            osc: this.audioContext.createOscillator(),
-            vca: this.audioContext.createGain(),
+        // Ensure SineEngine is available
+        if (typeof window.SineEngine === 'undefined') {
+            console.error("SineEngine not found!");
+            return;
+        }
+
+        // --- 1. Gather ADSR Settings from DOM ---
+        const getVal = (id, def) => {
+            const el = document.getElementById(id);
+            return el ? parseFloat(el.value) : def;
         };
+
+        const adsrSettings = {
+            attack: getVal('adsrAttack', 0.01),
+            decay: getVal('adsrDecay', 0.1),
+            sustain: getVal('adsrSustain', 0.5),
+            velSens: getVal('adsrVelocitySens', 0.0) // Chords usually sound better with consistent velocity
+        };
+
+        // --- 2. Gather Timbre (Additive) Settings from DOM ---
+        const numHarmonicsEl = document.getElementById('numHarmonics');
+        const numHarmonics = numHarmonicsEl ? parseInt(numHarmonicsEl.value) : 6;
         
-        voice.osc.type = 'triangle';
-        voice.osc.frequency.value = freq;
+        const freqMultipliers = [];
+        const amplitudes = [];
+        const phasesRad = [];
+
+        for (let i = 1; i <= numHarmonics; i++) {
+            freqMultipliers.push(getVal(`freqMult${i}`, i));
+            amplitudes.push(getVal(`amp${i}`, i === 1 ? 1 : 0));
+            // Convert degrees to radians for the engine
+            phasesRad.push(getVal(`phase${i}`, 0) * (Math.PI / 180));
+        }
+
+        const globalSettings = {
+            numHarmonics: numHarmonics,
+            freqMultipliers: freqMultipliers,
+            amplitudes: amplitudes,
+            phasesRad: phasesRad,
+            pitchBendCents: 0 // No pitch bend for the chord module
+        };
+
+        // --- 3. Play Note via SineEngine ---
+        // We simulate a velocity of 100 (out of 127) for a balanced volume
+        const velocity = 100;
         
-        voice.osc.connect(voice.vca).connect(this.nodes.output);
-        
-        voice.vca.gain.setValueAtTime(0, now);
-        voice.vca.gain.linearRampToValueAtTime(0.3, now + 0.01);
-        
-        voice.osc.start(now);
-        this.activeVoices.set(noteId, voice);
+        // Use this.nodes.output as the target so the module's signal flow is respected
+        const noteInstance = SineEngine.play(
+            this.audioContext, 
+            freq, 
+            velocity, 
+            adsrSettings, 
+            globalSettings, 
+            this.nodes.output
+        );
+
+        this.activeVoices.set(noteId, noteInstance);
     }
     
     _stopAllVoices() {
-        const now = this.audioContext.currentTime;
-        this.activeVoices.forEach((voice, noteId) => {
-            voice.vca.gain.setTargetAtTime(0, now, 0.2);
-            voice.osc.stop(now + 1.0);
+        if (typeof window.SineEngine === 'undefined') return;
+
+        // Get current release time to fade out smoothly
+        const releaseEl = document.getElementById('adsrRelease');
+        const releaseTime = releaseEl ? parseFloat(releaseEl.value) : 0.2;
+
+        this.activeVoices.forEach((voiceInstance, noteId) => {
+            SineEngine.stop(this.audioContext, voiceInstance, releaseTime);
         });
+        
         this.activeVoices.clear();
     }
     
@@ -142,7 +188,7 @@ class CircleOfFifthsModule {
             </div>
             <div id="circle-container"></div>
             <p style="font-size: 0.85em; color: var(--color-text-secondary); text-align: center; margin: 0;">
-                Click a key to play a chord. Click it again to set it as the Tonic.
+                Click a key to play a chord using the current Synth settings. Click again to set Tonic.
             </p>
         `;
     }
