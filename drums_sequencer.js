@@ -224,7 +224,25 @@ class DrumsAndSequencer {
     }
 
     initializeSequencerPattern() {
-        this.sequencerPattern = Array.from({ length: this.SEQ_LENGTH }, () => this.createEmptyStep());
+        // Luodaan askeleet (oletuksena 8 kpl)
+        this.sequencerPattern = Array.from({ length: this.SEQ_LENGTH }, (_, i) => {
+            const step = this.createEmptyStep();
+
+            // 1. Hi-hat jokaisessa askeleessa
+            step.hat = true;
+
+            // 2. Kick ensimmäisessä askeleessa (indeksi 0)
+            if (i === 0) {
+                step.kick = true;
+            }
+
+            // 3. Snare viidennessä askeleessa (indeksi 4)
+            if (i === 4) {
+                step.snare = true;
+            }
+
+            return step;
+        });
     }
 
     changeSeqLength(newLength) {
