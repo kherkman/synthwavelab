@@ -1,5 +1,3 @@
---- START OF FILE CircleOfFifthsModule.js ---
-
 /**
  * Example Synth Module: A "Circle of Fifths" Interactive Chord Player.
  *
